@@ -20,6 +20,12 @@ function Get-Now {
  .Example
    # Find all .exe files and check their reputation on VirusTotal
    Get-ChildItem -Path '.' -Recurse | Get-FileHash | Get-VirusTotalReport -ApiKey <YOUR API KEY> | Format-List
+
+ .Example
+   # Find, hash and export to a CSV
+   Get-ChildItem -Path '.' --Recurse | Get-FileHash | Export-Csv -Path out.csv
+   # Transfer to other machine
+   Import-Csv -Path out.csv | Get-VirusTotalReport -ApiKey <YOUR API KEY>
 #>
 function Get-VirusTotalReport {
     [CmdletBinding()]
